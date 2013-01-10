@@ -18,8 +18,8 @@ class ManagedQuery(Query):
     def __init__(self, entities, *args, **kwargs):
         for entity in entities:
             if isinstance(entity, DeclarativeMeta):
-                if hasattr(entity, 'Filters'):
-                    manager_cls = entity.Filters
+                if hasattr(entity, '__manager__'):
+                    manager_cls = entity.__manager__
                     for fname in filter(not_doubleunder, dir(manager_cls)):
                         method = getattr(manager_cls, fname, None)
                         setattr(self, fname, lambda: method(self))

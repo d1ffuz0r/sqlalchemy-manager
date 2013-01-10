@@ -30,7 +30,7 @@ class Main(Base):
     typeMedia = Column(Integer)
     is_index = Column(Boolean, default=False)
 
-    Filters = MainManager
+    __manager__ = MainManager
 
     __mapper_args__ = {'polymorphic_on': typeMedia}
 
