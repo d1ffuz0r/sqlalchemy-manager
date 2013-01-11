@@ -29,6 +29,7 @@ class MainSessionManager:
 
 
 class MainManager:
+
     @staticmethod
     def is_index(self):
         return self.filter_by(is_index=True)
@@ -93,6 +94,7 @@ class TestsQueryManager(unittest.TestCase):
     def test_subclass_query(self):
         self.assertTrue(hasattr(session.query(Video), 'is_index'))
         self.assertTrue(session.query(Video).is_index())
+        self.assertTrue(session.query(Video).is_index().filter_by(child=1).is_public())
 
     def test_table_without_manager(self):
         self.assertTrue(hasattr(session.query(Test), 'is_index'))
