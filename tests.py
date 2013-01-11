@@ -94,10 +94,12 @@ class TestsQueryManager(unittest.TestCase):
     def test_subclass_query(self):
         self.assertTrue(hasattr(session.query(Video), 'is_index'))
         self.assertTrue(session.query(Video).is_index())
-        self.assertTrue(session.query(Video).is_index().filter_by(child=1).is_public())
+        self.assertTrue(
+            session.query(Video).is_index().filter_by(child=1).is_public()
+        )
 
-    def test_table_without_manager(self):
-        self.assertTrue(hasattr(session.query(Test), 'is_index'))
+    def test_without_manager(self):
+        self.assertFalse(hasattr(session.query(Test), 'is_index'))
 
 
 class TestsSessionManager(unittest.TestCase):
