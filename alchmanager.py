@@ -29,19 +29,10 @@ class ManagedQuery(Query):
 
 class ManagedSession(Session):
 
-    methods = {}
-
     def load_manager(self):
         def loader(manager_cls):
             for fname in filter(not_doubleunder, dir(manager_cls)):
-                method = getattr(manager_cls, fname, None)
-                self.methods[fname] = method
+                fn = getattr(manager_cls, fname)
+                if not hasattr(self._query_cls, fname):
+                    setattr(self._query_cls, fname, fn)
         return loader
-
-    def query(self, *entities, **kwargs):
-        """Return a new ``Query`` object corresponding to this ``Session``."""
-        query = self._query_cls(entities, self, **kwargs)
-        for fname, fn in self.methods.items():
-            if not hasattr(query, fname):
-                setattr(query.__class__, fname, fn)
-        return query
