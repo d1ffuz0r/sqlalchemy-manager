@@ -34,15 +34,15 @@ Base = declarative_base()
 class MainManager:
 
     @staticmethod
-	def is_index(self):
-    	return self.filter_by(is_index=True)
+    def is_index(query):
+    	return query.filter_by(is_index=True)
 
-	@staticmethod
-    def is_public(self):
-        return self.filter_by(is_public=True)
+    @staticmethod
+    def is_public(query):
+        return query.filter_by(is_public=True)
 
 class Test(Base):
-	id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     is_public = Column(Boolean, default=False)
     is_index = Column(Boolean)
 
@@ -71,12 +71,12 @@ session = sessionmaker(class_=ManagedSession,
 class MainSessionManager:
 
     @staticmethod
-    def published(self):
-    	return self.filter_by(is_public=True)
+    def published(query):
+    	return query.filter_by(is_public=True)
 
     @staticmethod
-    def has_index(self):
-        return self.filter_by(is_index=True)
+    def has_index(query):
+        return query.filter_by(is_index=True)
 
 session.query(TestModel).has_index().published().count()
 ```

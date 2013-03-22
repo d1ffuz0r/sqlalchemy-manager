@@ -20,23 +20,23 @@ Base = declarative_base()
 class MainSessionManager:
 
     @staticmethod
-    def published(self):
-        return self.filter_by(is_public=True)
+    def published(query):
+        return query.filter_by(is_public=True)
 
     @staticmethod
-    def has_index(self):
-        return self.filter_by(is_index=True)
+    def has_index(query):
+        return query.filter_by(is_index=True)
 
 
 class MainManager:
 
     @staticmethod
-    def is_index(self):
-        return self.filter_by(is_index=True)
+    def is_index(query):
+        return query.filter_by(is_index=True)
 
     @staticmethod
-    def is_public(self):
-        return self.filter_by(is_public=True)
+    def is_public(query):
+        return query.filter_by(is_public=True)
 
 
 class Main(Base):
