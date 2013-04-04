@@ -5,8 +5,8 @@ from setuptools import setup
 setup(
     name='sqlalchemy-manager',
     version='0.0.1',
-    short_desctiption='Manager for SQLAlchemy',
-    lond_description=open('README.rst').read(),
+    description='Manager for SQLAlchemy',
+    long_description=open('README.rst').read(),
     author='Roman Gladkov',
     author_email='d1fffuz0r@gmail.com',
     url='https://github.com/d1ffuz0r/sqlalchemy-manager',
