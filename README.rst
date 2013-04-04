@@ -8,9 +8,7 @@ Installation
 
 .. code-block:: console
 
-    $ git clone https://github.com/d1ffuz0r/sqlalchemy-manager.git
-    $ cd sqlalchemy-manager
-    $ python setup.py install
+    $ [sudo] pip install sqlalchemy-manager
 
 Documentation
 -------------
