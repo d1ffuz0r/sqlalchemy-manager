@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='sqlalchemy-manager',
-    version='0.0.1',
+    version='0.0.2',
     description='Manager for SQLAlchemy',
     long_description=open('README.rst').read(),
     author='Roman Gladkov',
