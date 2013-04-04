@@ -6,7 +6,7 @@ Manager for model, methods added in runtime to query.
 Installation
 ------------
 
-::
+.. code-block:: console
 
     $ git clone https://github.com/d1ffuz0r/sqlalchemy-manager.git
     $ cd sqlalchemy-manager
@@ -21,9 +21,9 @@ Documentation
 Manager for Query.
 
 Example
-^^^^^^^
+-------
 
-::
+.. code-block:: python
 
     from sqlalchemy.orm import sessionmaker
 
@@ -61,9 +61,9 @@ Manager for Session. Decorator ``load_manager()`` for register methods
 into session.
 
 Example
-'''''''
+-------
 
-::
+.. code-block:: python
 
     from sqlalchemy.orm import sessionmaker
     from alchmanager import ManagedQuery, ManagedSession
