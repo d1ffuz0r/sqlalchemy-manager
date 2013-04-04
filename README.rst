@@ -15,7 +15,7 @@ Installation
 Documentation
 -------------
 
-### alchmanager.ManagedQuery
+alchmanager.ManagedQuery
 ----------------------------
 
 Manager for Query.
@@ -54,7 +54,7 @@ Example
 
     session.query(Video).is_index().filter_by(id=1).is_public()
 
-### alchmanager.ManagedSession
+alchmanager.ManagedSession
 ------------------------------
 
 Manager for Session. Decorator ``load_manager()`` for register methods
