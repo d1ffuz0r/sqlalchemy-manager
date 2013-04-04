@@ -3,7 +3,7 @@ from setuptools import setup
 
 
 setup(
-    name='alchmanager',
+    name='sqlalchemy-manager',
     version='0.0.1',
     short_desctiption='Manager for SQLAlchemy',
     lond_description=open('README.rst').read(),
