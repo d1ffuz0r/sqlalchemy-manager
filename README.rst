@@ -50,7 +50,7 @@ Example
 
         __manager__ = MainManager
 
-    session.query(Video).is_index().filter_by(id=1).is_public()
+    session.query(Test).is_index().filter_by(id=1).is_public()
 
 alchmanager.ManagedSession
 ------------------------------
