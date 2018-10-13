@@ -4,6 +4,7 @@ alchmanager
 __version__ = '0.0.2'
 __author__ = 'Roman Gladkov'
 import types
+from sqlalchemy.orm.mapper import Mapper
 from sqlalchemy.orm.query import Query
 from sqlalchemy.orm.session import Session
 from sqlalchemy.ext.declarative.api import DeclarativeMeta
@@ -17,13 +18,14 @@ class ManagedQuery(Query):
     """Managed Query object"""
 
     def __init__(self, entities, *args, **kwargs):
-        entity = entities[0]
-        if isinstance(entity, DeclarativeMeta):
-            if hasattr(entity, '__manager__'):
-                manager_cls = entity.__manager__
-                for fname in filter(not_doubleunder, dir(manager_cls)):
-                    fn = getattr(manager_cls, fname)
-                    setattr(self, fname, types.MethodType(fn, self))
+        if isinstance(entities, Mapper):
+            entity = entities.entity
+            if isinstance(entity, DeclarativeMeta):
+                if hasattr(entity, '__manager__'):
+                    manager_cls = entity.__manager__
+                    for fname in filter(not_doubleunder, dir(manager_cls)):
+                        fn = getattr(manager_cls, fname)
+                        setattr(self, fname, types.MethodType(fn, self))
         super(ManagedQuery, self).__init__(entities, *args, **kwargs)
 
 
