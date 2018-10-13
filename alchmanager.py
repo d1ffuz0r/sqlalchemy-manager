@@ -18,14 +18,18 @@ class ManagedQuery(Query):
     """Managed Query object"""
 
     def __init__(self, entities, *args, **kwargs):
+        entity = None
         if isinstance(entities, Mapper):
             entity = entities.entity
-            if isinstance(entity, DeclarativeMeta):
-                if hasattr(entity, '__manager__'):
-                    manager_cls = entity.__manager__
-                    for fname in filter(not_doubleunder, dir(manager_cls)):
-                        fn = getattr(manager_cls, fname)
-                        setattr(self, fname, types.MethodType(fn, self))
+        if isinstance(entities, tuple) and len(entities):
+            entity = entities[0]
+
+        if entity and isinstance(entity, DeclarativeMeta):
+            if hasattr(entity, '__manager__'):
+                manager_cls = entity.__manager__
+                for fname in filter(not_doubleunder, dir(manager_cls)):
+                    fn = getattr(manager_cls, fname)
+                    setattr(self, fname, types.MethodType(fn, self))
         super(ManagedQuery, self).__init__(entities, *args, **kwargs)
 
 
